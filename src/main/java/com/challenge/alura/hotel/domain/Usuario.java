@@ -17,28 +17,41 @@ public class Usuario implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String login;
-    private String clave;
+    private String userName;
+    private String password;
     @Column(length = 800)
     private String token;
 
+    public Usuario(String userName, String password) {
+        this.userName = userName;
+        this.password = password;
+    }
+
+    public Usuario() {
+
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority("ROLE_USER"));
     }
 
+    public Long getId() {
+        return id;
+    }
 
-
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     @Override
     public String getPassword() {
-        return clave;
+        return password;
     }
 
     @Override
     public String getUsername() {
-        return login;
+        return userName;
     }
 
     public String getToken() {
@@ -68,10 +81,5 @@ public class Usuario implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-
-
-
-
-
 
 }
