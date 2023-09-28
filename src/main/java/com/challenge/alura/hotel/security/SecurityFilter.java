@@ -53,10 +53,12 @@ public class SecurityFilter extends OncePerRequestFilter {
 
                 //Token valido
                 UserDetails usuario = usuarioRepository.findByUserName(nombreUsuario);
-                ********
+
                 UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(usuario, null,
-                        usuario.getAuthorities());
-                SecurityContextHolder.getContext().setAuthentication(authentication);
+                        usuario.getAuthorities()); // Este objeto se utiliza para representar la información de autenticación del usuario.
+
+                SecurityContextHolder.getContext().setAuthentication(authentication); // es una clase que proporciona acceso al contexto de seguridad en Spring Security.
+                                                                                        //establece el objeto de autenticación(authentication) en el contexto de seguridad.
             }
         }
 
